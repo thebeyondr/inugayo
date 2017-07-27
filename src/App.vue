@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+
   </div>
 </template>
 
 <script>
 import Hello from './components/Hello'
+import Firebase from 'firebase'
+
+let config ={
+    apiKey: "AIzaSyByovdvO1h40MXJQVADprxqi0uMHNOm3EQ",
+    authDomain: "inugayo-56a7f.firebaseapp.com",
+    databaseURL: "https://inugayo-56a7f.firebaseio.com",
+    projectId: "inugayo-56a7f",
+    storageBucket: "inugayo-56a7f.appspot.com",
+    messagingSenderId: "73025774043"
+}
+
+let app = Firebase.initializeApp(config);
+let db = app.database();
+
+let dogsRef= db.ref('dogs');
 
 export default {
   name: 'app',
-  components: {
-    Hello
+  firebase: {
+    dogs: dogsRef
   }
 }
 </script>
