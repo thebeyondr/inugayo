@@ -43,6 +43,7 @@
                <th>Age</th>
                <th>Gender</th>
                <th>Breed</th>
+               <th>Remove</th>
              </tr>
             </thead>
             <tbody>
@@ -51,20 +52,22 @@
                 <td>{{dog.age}}</td>
                 <td>{{dog.gender}}</td>
                 <td>{{dog.breed}}</td>
+                <td><span class="glyphicon glyphicon-trash" v-on:click="removeDog(dog)"></span></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-</template>
-
-
-// SCRIPTS
+</template> // SCRIPTS
 <script>
     import Hello from './components/Hello'
     // import Firebase
     import Firebase from 'firebase'
+
+    //import Toastr
+    import toastr from 'toastr'
+
     //config Firebase
     let config = {
             apiKey: "AIzaSyByovdvO1h40MXJQVADprxqi0uMHNOm3EQ",
@@ -97,15 +100,21 @@
                 }
             }
         },
-        methods:{
-          //Add Dogs function
-          addDog: function(){
-            dogsRef.push(this.newDog);
-            this.newDog.name="";
-            this.newDog.age="";
-            this.newDog.breed="";
-            this.newDog.gender="";
-          }
+        methods: {
+            //Add Dogs function
+            addDog: function() {
+                dogsRef.push(this.newDog);
+                this.newDog.name = "";
+                this.newDog.age = "";
+                this.newDog.breed = "";
+                this.newDog.gender = "";
+                toastr.success("Dog Added!");
+            },
+            //Remove Dog function
+            removeDog: function(dog) {
+                dogsRef.child(dog['.key']).remove();
+                toastr.error("Dog Removed!");
+            }
         }
     }
 </script>
@@ -118,5 +127,9 @@
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
         margin-top: 60px;
+    }
+    
+    .glyphicon.glyphicon-trash {
+        color: darkred;
     }
 </style>
