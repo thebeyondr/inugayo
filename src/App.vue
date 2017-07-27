@@ -5,16 +5,16 @@
     </div>
     <div class="panel panel-default">
       <div class="panel panel-heading">
-        Our dogs
+        Our Dogs
       </div> 
       <div class="panel-body">
-        <div class="table table-striped">
-          <table>
+        <table class="table table-striped">
             <thead>
              <tr>
                <th>Name</th>
                <th>Age</th>
                <th>Gender</th>
+               <th>Breed</th>
              </tr>
             </thead>
             <tbody>
@@ -22,6 +22,7 @@
                 <td>{{dog.name}}</td>
                 <td>{{dog.age}}</td>
                 <td>{{dog.gender}}</td>
+                <td>{{dog.breed}}</td>
               </tr>
             </tbody>
           </table>
@@ -62,7 +63,6 @@
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2c3e50;
         margin-top: 60px;
     }
